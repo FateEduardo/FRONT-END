@@ -1,26 +1,26 @@
-appController.controller("logoutCtrl", function ($scope,$location, $rootScope,$interval ) {
+appController.controller("logoutCtrl", function ($scope, $location, $rootScope, $interval) {
     $scope.countTime = 0;
-    var stop;
-    $scope.logOut=function(){
-        $rootScope.loggedUser = null; 
+    $scope.show = true;
+    $scope.logOut = function () {
+        $rootScope.loggedUser = null;
         $location.path('/login');
     }
-    $scope.clearTime = function(){
-         $scope.countTime = 0;
-         $scope.startTime(); 
+    $scope.clearTime = function () {
+        $scope.countTime = 0;
+        $scope.startTime();
     }
-    $scope.startTime = function(){
-         if ( angular.isDefined(stop) ) return;
-          stop = $interval(function() {
-              if($scope.countTime > 76300){
-                   $location.path('/logout');
-              }else{
-                  $scope.countTime++;
-              }
-          });
+    $scope.startTime = function () {
+        if (angular.isDefined(stop)) return;
+        stop = $interval(function () {
+            if ($scope.countTime > 76300) {
+                $location.path('/logout');
+            } else {
+                $scope.countTime++;
+            }
+        });
     }
-    $scope.redirect =function(path){
-        $location.path( path );
+    $scope.redirect = function (path) {
+        $location.path(path);
     }
-                           
+
 });
